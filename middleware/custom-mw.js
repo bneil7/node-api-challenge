@@ -1,9 +1,8 @@
 const ProjDB = require("../data/helpers/projectModel");
-const ActDB = require("../data/helpers/actionModel");
 
 module.exports = {
   logger,
-  validateProjectId,
+  validateProjID,
 };
 
 function logger(req, res, next) {
@@ -16,4 +15,19 @@ function logger(req, res, next) {
   next();
 }
 
-function validateProjectId(req, res, next) {}
+function validateProjID(req, res, next) {
+  const id = req.params.id;
+
+  ProjDB.get(id)
+    .then(proj => {
+      if (proj) {
+        next();
+      } else {
+        res.status(400).json({ errorMessage: "Project ID not found." });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ errorMessage: err.message });
+    });
+}
