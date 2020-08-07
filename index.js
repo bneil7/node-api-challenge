@@ -1,3 +1,11 @@
+const server = require("./server");
+
+const port = 7777;
+
+server.listen(7777, () => {
+  console.log(`SEVENS ${port}`);
+});
+
 /*
 play this: https://www.youtube.com/watch?v=d-diB65scQU
 
@@ -12,3 +20,5 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+// ^^ love this btw ❤️
